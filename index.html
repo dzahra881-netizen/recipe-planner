@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Meal planning dashboard</p>
+          <h1>Recipe Planner</h1>
+        </div>
+        <div class="topbar-stats">
+          <div class="stat-pill">
+            <span class="stat-label">Recipes</span>
+            <strong id="recipe-count">0</strong>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-label">Meals this week</span>
+            <strong id="weekly-meals-count">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel recipe-panel">
+          <div class="panel-header">
+            <h2>Recipe library</h2>
+            <button id="reset-demo" class="secondary-button" type="button">Reset demo</button>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-field" for="recipe-search">
+              <span>Search</span>
+              <input id="recipe-search" type="search" placeholder="Search recipes or ingredients" />
+            </label>
+          </div>
+
+          <form id="recipe-form" class="recipe-form">
+            <input type="hidden" id="recipe-id" />
+
+            <div class="field-grid two-up">
+              <label>
+                <span>Recipe name</span>
+                <input id="recipe-name" name="recipeName" type="text" placeholder="e.g. Lemon Herb Chicken" required />
+              </label>
+
+              <label>
+                <span>Prep time</span>
+                <input id="recipe-time" name="recipeTime" type="text" placeholder="30 min" required />
+              </label>
+            </div>
+
+            <div class="field-grid two-up">
+              <label>
+                <span>Servings</span>
+                <input id="recipe-servings" name="recipeServings" type="number" min="1" max="12" value="2" required />
+              </label>
+
+              <label>
+                <span>Tags</span>
+                <input id="recipe-tags" name="recipeTags" type="text" placeholder="quick, vegetarian, family" />
+              </label>
+            </div>
+
+            <label>
+              <span>Ingredients</span>
+              <textarea id="recipe-ingredients" name="recipeIngredients" rows="5" placeholder="One ingredient per line" required></textarea>
+            </label>
+
+            <label>
+              <span>Instructions</span>
+              <textarea id="recipe-instructions" name="recipeInstructions" rows="5" placeholder="Describe how to make the recipe" required></textarea>
+            </label>
+
+            <div class="form-actions">
+              <button class="primary-button" type="submit" id="submit-recipe">Save recipe</button>
+              <button class="ghost-button" type="button" id="cancel-edit">Cancel</button>
+            </div>
+          </form>
+
+          <div id="recipe-list" class="recipe-list"></div>
+        </section>
+
+        <section class="panel planner-panel">
+          <div class="panel-header">
+            <h2>Weekly planner</h2>
+            <button id="clear-planner" class="secondary-button" type="button">Clear week</button>
+          </div>
+
+          <div id="planner-grid" class="planner-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="panel grocery-panel">
+          <div class="panel-header">
+            <h2>Grocery list</h2>
+          </div>
+          <ul id="grocery-list" class="grocery-list"></ul>
+        </aside>
+      </main>
+    </div>
+
+    <template id="recipe-card-template">
+      <article class="recipe-card">
+        <div class="recipe-card-top">
+          <div>
+            <h3 class="recipe-name"></h3>
+            <p class="recipe-meta"></p>
+          </div>
+          <span class="recipe-tag"></span>
+        </div>
+        <p class="recipe-ingredients-preview"></p>
+        <div class="recipe-card-actions">
+          <button class="primary-button small-button add-to-week" type="button">Add to week</button>
+          <button class="ghost-button small-button edit-recipe" type="button">Edit</button>
+          <button class="danger-button small-button delete-recipe" type="button">Delete</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
